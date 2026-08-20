@@ -1,4 +1,3 @@
-import './App.css'
 import TodoListPage from "./pages/TodoListPage/TodoListPage.tsx";
 import {Route, Routes} from "react-router-dom";
 import TodoDetailPage from "./pages/TodoDetailPage/TodoDetailPage.tsx";
