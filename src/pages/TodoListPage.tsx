@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import type {Todo} from "../types/todo.ts";
 import {getTodos} from "../api/todoApi.ts";
+import TodoCard from "../components/TodoCard/TodoCard.tsx";
+import TodoForm from "../components/TodoForm/TodoForm.tsx";
 
 export default function TodoListPage() {
     const [todos, setTodos] = useState<Todo[]>([]);
@@ -12,15 +14,18 @@ export default function TodoListPage() {
             });
     }, []);
 
+    function handleTodoCreated(todo: Todo) {
+        setTodos(prevTodos => [...prevTodos, todo]);
+    }
+
     return (
         <div>
             <h1>Todos</h1>
 
+            <TodoForm onTodoCreated={handleTodoCreated}/>
+
             {todos.map(todo => (
-                <div key={todo.id}>
-                    <p>{todo.description}</p>
-                    <p>{todo.status}</p>
-                </div>
+                <TodoCard key={todo.id} todo={todo} />
             ))}
         </div>
     );
