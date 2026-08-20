@@ -13,13 +13,15 @@ export default function TodoCard(props: Readonly<TodoCardProps>) {
             <h2>{props.todo.description}</h2>
             <p>Status: {props.todo.status}</p>
 
-            <Link to={`/todos/${props.todo.id}`}>
-                Edit
-            </Link>
+            <div className="todo-card-actions">
+                <Link to={`/todos/${props.todo.id}`}>
+                    Edit
+                </Link>
 
-            <button onClick={() => props.onDelete(props.todo.id)}>
-                Delete
-            </button>
+                <button onClick={() => props.onDelete(props.todo.id)}>
+                    Delete
+                </button>
+            </div>
         </div>
     );
 }

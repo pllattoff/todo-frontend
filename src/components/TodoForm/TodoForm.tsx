@@ -1,6 +1,7 @@
 import {useForm} from "react-hook-form";
 import type {CreateTodo, Todo} from "../../types/todo.ts";
 import {createTodo} from "../../api/todoApi.ts";
+import "./TodoForm.css";
 
 type TodoFormProps = {
     onTodoCreated: (todo: Todo) => void;
@@ -25,7 +26,10 @@ export default function TodoForm(props: Readonly<TodoFormProps>) {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+            className="todo-form"
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <input
                 type="text"
                 placeholder="Description"

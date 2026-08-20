@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
-import type {Todo} from "../types/todo.ts";
-import {deleteTodo, getTodos} from "../api/todoApi.ts";
-import TodoCard from "../components/TodoCard/TodoCard.tsx";
-import TodoForm from "../components/TodoForm/TodoForm.tsx";
+import type {Todo} from "../../types/todo.ts";
+import {deleteTodo, getTodos} from "../../api/todoApi.ts";
+import TodoCard from "../../components/TodoCard/TodoCard.tsx";
+import TodoForm from "../../components/TodoForm/TodoForm.tsx";
+import "./TodoListPage.css";
 
 export default function TodoListPage() {
     const [todos, setTodos] = useState<Todo[]>([]);
@@ -28,10 +29,10 @@ export default function TodoListPage() {
     }
 
     return (
-        <div>
+        <main className="todo-list-page">
             <h1>Todos</h1>
 
-            <TodoForm onTodoCreated={handleTodoCreated}/>
+            <TodoForm onTodoCreated={handleTodoCreated} />
 
             {todos.map(todo => (
                 <TodoCard
@@ -40,6 +41,6 @@ export default function TodoListPage() {
                     onDelete={handleTodoDeleted}
                 />
             ))}
-        </div>
+        </main>
     );
 }
