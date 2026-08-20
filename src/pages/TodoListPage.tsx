@@ -34,7 +34,11 @@ export default function TodoListPage() {
             <TodoForm onTodoCreated={handleTodoCreated}/>
 
             {todos.map(todo => (
-                <TodoCard key={todo.id} todo={todo} onDelete={handleTodoDeleted}/>
+                <TodoCard
+                    key={todo.id}
+                    todo={todo}
+                    onDelete={handleTodoDeleted}
+                />
             ))}
         </div>
     );
