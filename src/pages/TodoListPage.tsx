@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import type {Todo} from "../types/todo.ts";
-import {getTodos} from "../api/todoApi.ts";
+import {deleteTodo, getTodos} from "../api/todoApi.ts";
 import TodoCard from "../components/TodoCard/TodoCard.tsx";
 import TodoForm from "../components/TodoForm/TodoForm.tsx";
 
@@ -18,6 +18,15 @@ export default function TodoListPage() {
         setTodos(prevTodos => [...prevTodos, todo]);
     }
 
+    function handleTodoDeleted(id: string) {
+        deleteTodo(id)
+            .then(() => {
+                setTodos(prevTodos =>
+                    prevTodos.filter(todo => todo.id !== id)
+                );
+            });
+    }
+
     return (
         <div>
             <h1>Todos</h1>
@@ -25,7 +34,7 @@ export default function TodoListPage() {
             <TodoForm onTodoCreated={handleTodoCreated}/>
 
             {todos.map(todo => (
-                <TodoCard key={todo.id} todo={todo} />
+                <TodoCard key={todo.id} todo={todo} onDelete={handleTodoDeleted}/>
             ))}
         </div>
     );

@@ -3,6 +3,7 @@ import "./TodoCard.css"
 
 type TodoCardProps = {
     todo: Todo;
+    onDelete: (id: string) => void;
 };
 
 export default function TodoCard(props: Readonly<TodoCardProps>) {
@@ -10,6 +11,10 @@ export default function TodoCard(props: Readonly<TodoCardProps>) {
         <div className="todo-card">
             <h2>{props.todo.description}</h2>
             <p>Status: {props.todo.status}</p>
+
+            <button onClick={() => props.onDelete(props.todo.id)}>
+                Delete
+            </button>
         </div>
     );
 }
